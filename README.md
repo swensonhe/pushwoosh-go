@@ -25,16 +25,16 @@ import (
 )
 
 func main() {
-	client := pushwoosh.NewClient("PUSHWOOSH_APPLICATION_CODE", "PUSHWOOSH_APPLICATION_TOKEN")
-	device := &pushwoosh.Device{
+    client := pushwoosh.NewClient("PUSHWOOSH_APPLICATION_CODE", "PUSHWOOSH_APPLICATION_TOKEN")
+    device := &pushwoosh.Device{
         PushToken: "TOKEN",
         Hwid: "HWID",
         DeviceType: pushwoosh.DeviceTypeiOS,
     }
-	err := client.RegisterDevice(device)
-	if err != nil {
-	    fmt.Println(err)
-	}
+    err := client.RegisterDevice(device)
+    if err != nil {
+        fmt.Println(err)
+    }
 }
 
 ```
@@ -45,19 +45,19 @@ func main() {
 package main
 
 import (
-  "github.com/swensonhe/pushwoosh-go"
-  "fmt"
+    "github.com/swensonhe/pushwoosh-go"
+    "fmt"
 )
 
 func main() {
-	client := pushwoosh.NewClient("PUSHWOOSH_APPLICATION_CODE", "PUSHWOOSH_APPLICATION_TOKEN")
-	device := &pushwoosh.Device{
+    client := pushwoosh.NewClient("PUSHWOOSH_APPLICATION_CODE", "PUSHWOOSH_APPLICATION_TOKEN")
+    device := &pushwoosh.Device{
         Hwid: "HWID",
     }
-	err := client.UnregisterDevice(device)
-	if err != nil {
-	    fmt.Println(err)
-	}
+    err := client.UnregisterDevice(device)
+    if err != nil {
+        fmt.Println(err)
+    }
 }
 
 ```
@@ -68,34 +68,34 @@ func main() {
 package main
 
 import (
-  "github.com/swensonhe/pushwoosh-go"
-  "fmt"
+    "github.com/swensonhe/pushwoosh-go"
+    "fmt"
 )
 
 func main() {
     client := pushwoosh.NewClient("PUSHWOOSH_APPLICATION_CODE", "PUSHWOOSH_APPLICATION_TOKEN")
     message := &pushwoosh.Message{
         Notifications: []*pushwoosh.Notification{
-		    &pushwoosh.Notification{
-				SendDate: "now",
-				Devices: []string{"TOKEN"},
-				Content: "MESSAGE",
-				IosRootParams: pushwoosh.IosRootParams{
-				    Aps: pushwoosh.Aps{
-				        ContentAvailable: pushwoosh.NoContentAvailable
-				    },
-				    Data: n.Data,
-				},
-				IosSound: "default",
-				IosSilent: pushwoosh.SilentSettingOff,
-				Platforms: []int{pushwoosh.DeviceTypeiOS},
-			},
-		},
-	}
+            &pushwoosh.Notification{
+                SendDate: "now",
+                Devices: []string{"TOKEN"},
+                Content: "MESSAGE",
+                IosRootParams: pushwoosh.IosRootParams{
+                    Aps: pushwoosh.Aps{
+                        ContentAvailable: pushwoosh.NoContentAvailable
+                    },
+                    Data: n.Data,
+                },
+                IosSound: "default",
+                IosSilent: pushwoosh.SilentSettingOff,
+                Platforms: []int{pushwoosh.DeviceTypeiOS},
+            },
+        },
+    }
 
-	err := client.CreateMessage(message)
-	if err != nil {
-		fmt.Println(err)
-	}
+    err := client.CreateMessage(message)
+    if err != nil {
+        fmt.Println(err)
+    }
 }
 ```
