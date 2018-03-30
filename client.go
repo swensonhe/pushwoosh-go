@@ -55,7 +55,10 @@ func (c *Client) RegisterDevice(device *Device) error {
 	url := baseUrl + registerDeviceEndpoint
 
 	device.Application = c.applicationCode
-	device.PushToken = strings.ToLower(device.PushToken)
+
+	if device.DeviceType == DeviceTypeiOS {
+		device.PushToken = strings.ToLower(device.PushToken)
+	}
 
 	requestObject := &Request{
 		Request: device,
@@ -70,6 +73,7 @@ func (c *Client) RegisterDevice(device *Device) error {
 	if err != nil {
 		return err
 	}
+
 
 	request.Header.Set("Content-Type", "application/json")
 	_, err = c.httpClient.Do(request)
@@ -112,15 +116,6 @@ func (c *Client) CreateMessage(message *Message) error {
 	message.Application = c.applicationCode
 	message.Auth = c.applicationToken
 
-	// convert devices to lowercase strings
-	for _, notification := range message.Notifications {
-		devices := []string{}
-		for _, device := range notification.Devices {
-			devices = append(devices, strings.ToLower(device))
-		}
-		notification.Devices = devices
-	}
-
 	requestObject := &Request{
 		Request: message,
 	}
@@ -137,6 +132,9 @@ func (c *Client) CreateMessage(message *Message) error {
 
 	request.Header.Set("Content-Type", "application/json")
 	_, err = c.httpClient.Do(request)
+	if err != nil {
+		return err
+	}
 
 	return err
 }
