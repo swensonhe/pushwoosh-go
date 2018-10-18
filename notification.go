@@ -3,7 +3,9 @@ package pushwoosh
 type Notification struct {
 	SendDate string `json:"send_date"`
 	Content string `json:"content,omitempty"`
-	Devices []string `json:"devices"`
+	Devices []string `json:"devices,omitempty"`
+	Users []string `json:"users,omitempty"`
+	IosCategoryId *string `json:"ios_category_id,omitempty"`
 	IosRootParams IosRootParams `json:"ios_root_params"`
 	IosSound string `json:"ios_sound,omitempty"`
 	IosSilent SilentSetting `json:"ios_silent,omitempty"`

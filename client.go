@@ -23,10 +23,14 @@ type ContentAvailability int
 type SilentSetting int
 
 const (
-	baseUrl = "https://cp.pushwoosh.com/json/1.3"
-	registerDeviceEndpoint = "/registerDevice"
-	createMessageEndpoint = "/createMessage"
+	baseUrl                  = "https://cp.pushwoosh.com/json/1.3"
+	registerDeviceEndpoint   = "/registerDevice"
+	createMessageEndpoint    = "/createMessage"
 	unregisterDeviceEndpoint = "/unregisterDevice"
+)
+
+const (
+	CreateMessageDeviceLimit = 1000
 )
 
 const (
